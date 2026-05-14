@@ -198,7 +198,7 @@ aba_dataset <- tabPanel("Crie seu dataset", icon = icon("list", lib="glyphicon")
                           div(class = "well", style = "background-color: #fdfdfc;",
                               h4("Adicionar colunas personalizadas"),
                               p("Se você quiser adicionar colunas personalizadas, indique um sistema de preenchimento separando-as com ponto e vírgula.", style="color: #505c58;"),
-                              p("Exemplo: ", code("Citação formato ABNT; Como referenciar em trabalhos acadêmicos?; Pessoas citadas no depoimento")),
+                              p("Exemplo: ", code("Escolaridade; Número de filhos; Advogados(as) do caso; Pessoas citadas no depoimento")),
                               textInput("colunas_custom", NULL, width = "100%", placeholder = "Digite aqui suas variáveis separadas por ;")
                           ),
                           

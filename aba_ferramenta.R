@@ -22,7 +22,7 @@ aba_ferramenta <- tabPanel("Ferramenta de renomeação", icon = icon("wrench", l
                                           hr(style="border-top: 1px solid #eceae4;"),
                                           
                                           h4("2. Conjunto documental"),
-                                          helpText("Use as siglas e codificações oficiais da instituição detentora oficial quando existentes. Se não houver, crie um código único e consistente, elucidando a hierarquia da coleção (fundo → subconjunto → unidade). Adote um padrão legível para quem for consultar e mantenha esse esquema uniformemente documentado e aplicado em toda a coleção."),
+                                          helpText("Use as siglas e codificações da instituição detentora oficial. Se não houver, crie um código único e consistente, elucidando a hierarquia da coleção."),
                                           textInput("fundo", "Fundo (obrigatório)", value = "DASP"),
                                           textInput("subconj", "Subconjunto (opcional)", value = "PENITPRE-CSDTCARANDIRU"),
                                           hr(style="border-top: 1px solid #eceae4;"),
@@ -197,10 +197,10 @@ aba_ferramenta <- tabPanel("Ferramenta de renomeação", icon = icon("wrench", l
                                         mainPanel(
                                           
                                           # ---- NOVO AVISO DE REGRA DE OURO ADICIONADO AQUI ----
-                                          div(style = "background-color: #fffce0; border-left: 5px solid #e6c54f; padding: 15px; margin-bottom: 20px; border-radius: 4px; color: #5c5127;", 
-                                              h4("Atenção: separe seus arquivos por formato!", style = "color: #5c5127; margin-top: 0; font-weight: bold;"),
-                                              p("Como o prefixo gerado aqui descreve o tipo físico/digital daquele lote de documentos, ", strong("você nunca deve renomear documentos com extensões diferentes juntos.")),
-                                              p("Por exemplo, se seu conjunto a ser descrito contém arquivos com extensões ", code(".pdf"), " ", code(".jpeg"), " ", code(".jpg"), " ", code(".png"), " ", code(".mov"), " ", code(".mp4"), " ", code(".bup"), " ", code(".ifo"), " ", code(".vob"), ", dentre outros, crie pastas diferentes para agrupá-las.")
+                                          div(class = "atencao-box",
+                                              h4("Atenção: separe seus arquivos por formato!", style = "margin-top: 0; font-weight: bold;"),
+                                              p("Como o prefixo gerado aqui descreve o tipo físico/digital daquele lote de documentos, você nunca deve renomear documentos com extensões diferentes juntos."),
+                                              p("Por exemplo, se seu conjunto a ser descrito contém arquivos com extensões ", code(".pdf"), code(".jpeg"), code(".jpg"), code(".png"), code(".mov"), code(".mp4"), code(".bup"), code(".ifo"), code(".vob"), ", dentre outros, crie pastas diferentes para agrupá-las.")
                                           ),
                                           # -----------------------------------------------------
                                           

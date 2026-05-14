@@ -40,35 +40,18 @@ ui <- fluidPage(
       /* Caixas de destaque */
       .instrucao-box { background-color: #f4f7f6; border-left: 5px solid #829a91; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
       .alerta-box { background-color: #fcf5f5; border-left: 5px solid #d49a9a; padding: 15px; margin-bottom: 20px; border-radius: 4px; color: #5c3c3c; }
+      .atencao-box { background-color: #fff8e1; border-left: 5px solid #f1c40f; padding: 15px; margin-bottom: 20px; border-radius: 4px; color: #5c553c; }
       
       /* Estilo exclusivo para o botão de jogar (Aba Jogos) */
-      .btn-jogar-grande {
-        display: inline-block;
-        padding: 12px 30px; 
-        background-color: #505c58;
-        color: white !important;
-        font-family: 'Merriweather', serif;
-        font-weight: bold;
-        font-size: 1.1em; 
-        border-radius: 50px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        margin: 5px 0;
-      }
-      .btn-jogar-grande:hover {
-        background-color: #2c3e50;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        text-decoration: none;
-      }
+      .btn-jogar-grande { display: inline-block; padding: 12px 30px; background-color: #505c58; color: white !important; font-family: 'Merriweather', serif; font-weight: bold; font-size: 1.1em; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin: 5px 0; }
+      .btn-jogar-grande:hover { background-color: #2c3e50; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); text-decoration: none; }
       
       /* Estilo para a Aba Jogos (Margens Reduzidas) */
       .game-section { text-align: left; margin-bottom: 15px; font-family: 'Roboto', sans-serif; line-height: 1.4; color: #34495e; }
       .game-section h3 { font-size: 1.3em; font-family: 'Merriweather', serif; color: #2c3e50; margin-top: 25px; margin-bottom: 8px; border-bottom: 1px solid #eceae4; padding-bottom: 5px; }
       .game-section p { font-family: 'Roboto', sans-serif; font-size: 1.1em; color: #34495e; margin-bottom: 12px; }
       
-      /* Rodapé */
+      /* Rodapé e Citação */
       .footer-referencias { font-size: 0.85em; color: #7f8c8d; margin-top: 40px; margin-bottom: 20px; padding: 20px; background-color: #f8f9fa; border-top: 1px solid #dcdde1; border-radius: 5px; font-family: 'Roboto', sans-serif; }
       .footer-referencias h5 { font-size: 1.05em; color: #34495e; font-weight: bold; margin-top: 15px; margin-bottom: 10px; font-family: 'Merriweather', serif; }
       .footer-referencias p { margin-bottom: 5px; line-height: 1.4; }
@@ -77,11 +60,48 @@ ui <- fluidPage(
       .footer-referencias a.nome-link:hover { text-decoration: underline; }
       .footer-referencias a:hover { color: #2980b9; }
       .citacao-box { background-color: #eef2f5; padding: 10px; border-left: 3px solid #2980b9; font-family: 'IBM Plex Mono', monospace; font-size: 0.95em; color: #333; margin-bottom: 15px;}
+      
+      /* ==================== MODO ESCURO ==================== */
+      body { transition: background-color 0.4s, color 0.4s; }
+      body.dark-mode { background-color: #121212; color: #e0e0e0; }
+      
+      /* Textos Gerais */
+      body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode p, body.dark-mode li, body.dark-mode span, body.dark-mode strong, body.dark-mode b { color: #e0e0e0 !important; }
+      
+      /* Caixas (wells e fundos brancos) */
+      body.dark-mode .well { background-color: #1e1e1e !important; border-color: #333 !important; }
+      body.dark-mode summary { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-color: #444 !important; }
+      body.dark-mode div[style*='border: 1px solid #eceae4'] { border-color: #444 !important; }
+      body.dark-mode div[style*='background:#fdfdfc'], body.dark-mode div[style*='background-color: #fdfdfc'], body.dark-mode div[style*='background-color: #ffffff'] { background-color: #1e1e1e !important; color: #e0e0e0 !important; }
+      
+      /* Tratamento Noturno das Caixas Específicas */
+      body.dark-mode .instrucao-box { background-color: #2a2a2a !important; border-left-color: #829a91 !important; color: #e0e0e0 !important; }
+      body.dark-mode .alerta-box { background-color: #2a2a2a !important; border-left-color: #10b3cf !important; color: #e0e0e0 !important; }
+      body.dark-mode .atencao-box { background-color: #2a2a2a !important; border-left-color: #f1c40f !important; color: #e0e0e0 !important; }
+      body.dark-mode .citacao-box { background-color: #1e1e1e !important; border-left-color: #10b3cf !important; color: #dcdde1 !important;}
+      
+      /* ========== CORREÇÃO DROPDOWNS E INPUTS ========== */
+      body.dark-mode .form-control { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-color: #444 !important; }
+      body.dark-mode .selectize-input, body.dark-mode .selectize-input.full { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-color: #444 !important; }
+      body.dark-mode .selectize-input > *, body.dark-mode .selectize-input input { color: #e0e0e0 !important; }
+      body.dark-mode .selectize-dropdown { background-color: #2a2a2a !important; color: #e0e0e0 !important; border-color: #444 !important; }
+      body.dark-mode .selectize-dropdown .active { background-color: #10b3cf !important; color: #ffffff !important; }
+      body.dark-mode .selectize-dropdown .option { color: #e0e0e0 !important; }
+      body.dark-mode .radio input[type='radio'], body.dark-mode .checkbox input[type='checkbox'] { filter: invert(1) hue-rotate(180deg) brightness(1.5); }
+      
+      /* Demais elementos noturnos */
+      body.dark-mode .nav-tabs { border-bottom-color: #333; }
+      body.dark-mode .nav-tabs > li > a { color: #888; }
+      body.dark-mode .nav-tabs > li.active > a, body.dark-mode .nav-tabs > li.active > a:focus, body.dark-mode .nav-tabs > li.active > a:hover { background-color: #1e1e1e !important; color: #10b3cf !important; border-color: #333 !important; border-bottom-color: transparent !important; }
+      body.dark-mode code { background-color: #333; color: #ffb86c; }
+      body.dark-mode .footer-referencias { background-color: #1e1e1e !important; border-color: #333 !important; }
+      body.dark-mode .footer-referencias h5, body.dark-mode .footer-referencias p, body.dark-mode .footer-referencias a { color: #a0a0a0 !important; }
     "))
   ),
   
   # Cabeçalho Principal Customizado
-  div(style = "text-align: center; margin-top: 50px; margin-bottom: 40px;",
+  div(style = "text-align: center; margin-top: 50px; margin-bottom: 40px; position: relative;",
+      HTML('<button onclick="document.body.classList.toggle(\'dark-mode\'); if(document.body.classList.contains(\'dark-mode\')){ this.innerHTML = \'☀️ Modo Claro\'; } else { this.innerHTML = \'🌙 Modo Escuro\'; }" style="position: absolute; top: -30px; right: 15px; background-color: #2c3e50; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: \'Roboto\', sans-serif; font-weight: bold; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;">🌙 Modo Escuro</button>'),
       h1("Mnema 1.0", style = "font-size: 3.5em; margin-bottom: 0; letter-spacing: 1px;"),
       p("Ferramenta educativa para organização e disponibilização de acervos históricos em Direito e violência de Estado", style = "color: #8e8c84; font-size: 1.1em; margin-top: 5px; font-style: italic;")
   ),
