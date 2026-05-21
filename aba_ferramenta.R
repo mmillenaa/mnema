@@ -191,7 +191,13 @@ aba_ferramenta <- tabPanel("Ferramenta de renomeação", icon = icon("wrench", l
                                                                   "Matriz bruta - produção manual (MB1)" = "MB1", 
                                                                   "Matriz tratada - tratamento conhecido (MT1)" = "MT1", 
                                                                   "Matriz tratada - tratamento desconhecido (MTX)" = "MTX"), 
-                                                      selected = "MB0")
+                                                      selected = "MB0"),
+                                          
+                                          hr(style="border-top: 1px solid #eceae4; margin: 20px 0;"),
+                                          
+                                          h4("4. Identificação da unidade"),
+                                          helpText("Insira numerações de caixas, pastas ou itens específicos para fechar o prefixo (opcional)."),
+                                          textInput("id_item", "Identificador complementar", value = "", placeholder = "Ex: 0001-001")
                                         ),
                                         
                                         mainPanel(
@@ -236,7 +242,25 @@ aba_ferramenta <- tabPanel("Ferramenta de renomeação", icon = icon("wrench", l
                                           
                                           h4("D. Código final (script .bat):"),
                                           p("Siga as instruções na aba 'Tutorial passo a passo' para rodar este código no seu computador."),
-                                          verbatimTextOutput("codigo_bat")
+                                          
+                                          # Caixa com posição relativa para o botão flutuar
+                                          div(style = "position: relative;",
+                                              
+                                              # O botão agora só aparece se o usuário tiver colado algo na caixa C
+                                              conditionalPanel(
+                                                condition = "input.lista_arquivos && input.lista_arquivos.trim() !== ''",
+                                                HTML('<button id="btnCopiar" onclick="var el = document.getElementById(\'codigo_bat\'); var range = document.createRange(); range.selectNodeContents(el); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); document.execCommand(\'copy\'); sel.removeAllRanges(); var btn = document.getElementById(\'btnCopiar\'); btn.innerHTML = \'✅ Copiado!\'; setTimeout(function(){ btn.innerHTML = \'📋 Copiar\'; }, 2000);" style="position: absolute; top: 10px; right: 20px; background-color: #505c58; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-family: \'Roboto\', sans-serif; font-size: 0.85em; font-weight: bold; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">📋 Copiar</button>')
+                                              ),
+                                              
+                                              verbatimTextOutput("codigo_bat")
+                                          ),
+                                          
+                                          hr(style="border-top: 1px solid #eceae4; margin: 25px 0;"),
+                                          
+                                          # Relatório de Correspondência
+                                          h4("E. Relatório de correspondência (opcional):"),
+                                          p("Baixe um registro em texto documentando o nome original e a nova nomenclatura de cada arquivo. Útil para manter a rastreabilidade do seu acervo."),
+                                          downloadButton("baixar_relatorio_renomeacao", "Baixar relatório (TXT)", class = "btn-primary")
                                         )
                                       )
                              ),

@@ -7,7 +7,7 @@ library(openxlsx) # Biblioteca para formatar o Excel
 source("aba_sobre.R", encoding = "UTF-8")
 source("aba_ferramenta.R", encoding = "UTF-8")
 source("aba_dataset.R", encoding = "UTF-8")
-source("aba_jogos.R", encoding = "UTF-8")
+source("aba_complementos.R", encoding = "UTF-8")
 source("rodape.R", encoding = "UTF-8")
 
 # =======================================================
@@ -42,11 +42,11 @@ ui <- fluidPage(
       .alerta-box { background-color: #fcf5f5; border-left: 5px solid #d49a9a; padding: 15px; margin-bottom: 20px; border-radius: 4px; color: #5c3c3c; }
       .atencao-box { background-color: #fff8e1; border-left: 5px solid #f1c40f; padding: 15px; margin-bottom: 20px; border-radius: 4px; color: #5c553c; }
       
-      /* Estilo exclusivo para o botão de jogar (Aba Jogos) */
+      /* Estilo exclusivo para o botão de jogar (Aba Complementos) */
       .btn-jogar-grande { display: inline-block; padding: 12px 30px; background-color: #505c58; color: white !important; font-family: 'Merriweather', serif; font-weight: bold; font-size: 1.1em; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin: 5px 0; }
       .btn-jogar-grande:hover { background-color: #2c3e50; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); text-decoration: none; }
       
-      /* Estilo para a Aba Jogos (Margens Reduzidas) */
+      /* Estilo para a Aba Complementos (Margens Reduzidas) */
       .game-section { text-align: left; margin-bottom: 15px; font-family: 'Roboto', sans-serif; line-height: 1.4; color: #34495e; }
       .game-section h3 { font-size: 1.3em; font-family: 'Merriweather', serif; color: #2c3e50; margin-top: 25px; margin-bottom: 8px; border-bottom: 1px solid #eceae4; padding-bottom: 5px; }
       .game-section p { font-family: 'Roboto', sans-serif; font-size: 1.1em; color: #34495e; margin-bottom: 12px; }
@@ -100,10 +100,56 @@ ui <- fluidPage(
   ),
   
   # Cabeçalho Principal Customizado
-  div(style = "text-align: center; margin-top: 50px; margin-bottom: 40px; position: relative;",
-      HTML('<button onclick="document.body.classList.toggle(\'dark-mode\'); if(document.body.classList.contains(\'dark-mode\')){ this.innerHTML = \'☀️ Modo Claro\'; } else { this.innerHTML = \'🌙 Modo Escuro\'; }" style="position: absolute; top: -30px; right: 15px; background-color: #2c3e50; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: \'Roboto\', sans-serif; font-weight: bold; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;">🌙 Modo Escuro</button>'),
+  div(style = "text-align: center; margin-top: 60px; margin-bottom: 40px; position: relative;",
+      
+      # Agrupador do Menu (Flexbox para manter o dropdown e o Dark Mode perfeitamente alinhados)
+      div(style = "position: absolute; top: -45px; right: 10px; display: flex; align-items: center; gap: 10px; z-index: 1000;",
+          
+          # 1. Nosso Dropdown Customizado (Controla o Google escondido)
+          HTML('
+            <select id="custom_translate" onchange="translatePage(this.value)" style="background-color: #2c3e50; color: white; border: none; padding: 6px 12px; font-size: 0.85em; border-radius: 20px; cursor: pointer; font-family: \'Roboto\', sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); outline: none;">
+              <option value="" disabled selected>🌐 Select Language</option>
+              <option value="pt">Português (Brasil)</option>
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+            
+            <div id="google_translate_element" style="display:none;"></div>
+            
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                  pageLanguage: "pt",
+                  includedLanguages: "en,es,pt",
+                  autoDisplay: false
+                }, "google_translate_element");
+              }
+              
+              // A função que liga o nosso botão ao motor invisível do Google
+              function translatePage(lang) {
+                var googSelect = document.querySelector(".goog-te-combo");
+                if (googSelect) {
+                    googSelect.value = lang;
+                    googSelect.dispatchEvent(new Event("change"));
+                }
+              }
+            </script>
+            <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            
+            <style>
+              /* Extermina absolutamente qualquer lixo visual que o Google tente injetar no topo do ecrã */
+              body { top: 0px !important; position: static !important; } 
+              .skiptranslate { display: none !important; }
+              #goog-gt-tt { display: none !important; }
+            </style>
+          '),
+          
+          # 2. O botão mágico de inversão de cores
+          HTML('<button onclick="document.body.classList.toggle(\'dark-mode\'); if(document.body.classList.contains(\'dark-mode\')){ this.innerHTML = \'☀️ Modo Claro\'; } else { this.innerHTML = \'🌙 Modo Escuro\'; }" style="background-color: #2c3e50; color: white; border: none; padding: 6px 12px; font-size: 0.85em; border-radius: 20px; cursor: pointer; font-family: \'Roboto\', sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;">🌙 Modo Escuro</button>')
+      ),
+      
       h1("Mnema 1.0", style = "font-size: 3.5em; margin-bottom: 0; letter-spacing: 1px;"),
-      p("Ferramenta educativa para organização e disponibilização de acervos históricos em Direito e violência de Estado", style = "color: #8e8c84; font-size: 1.1em; margin-top: 5px; font-style: italic;")
+      p("Ferramenta educativa para organização e disponibilização de acervos históricos em Direito e violência de Estado", style = "color: #8e8c84; font-size: 1.1em; margin-top: 5px; font-style: normal;")
   ),
   
   # Sistema Principal de Abas
@@ -111,7 +157,7 @@ ui <- fluidPage(
     aba_sobre,
     aba_ferramenta,
     aba_dataset,
-    aba_jogos
+    aba_complementos
   ),
   
   # Rodapé
@@ -123,7 +169,7 @@ ui <- fluidPage(
 # =======================================================
 server <- function(input, output, session) {
   
-  # ---------- LÓGICA DO RENOMEADOR (COM MODO SEQUENCIAL) ----------
+  # ---------- LÓGICA DO RENOMEADOR (COM MODO SEQUENCIAL E CAMPO 4 DINÂMICO) ----------
   prefixo_pada <- reactive({
     area1 <- paste0(input$pais, "-", input$estado, input$repo)
     area2 <- input$fundo
@@ -131,8 +177,10 @@ server <- function(input, output, session) {
     caract <- c(input$genero, input$especie, input$tecnica, input$forma)
     caract <- caract[caract != ""]
     area3 <- paste(caract, collapse = "-")
+    
     partes <- c(area1, area2)
     if(area3 != "") partes <- c(partes, area3)
+    
     prefixo <- paste(partes, collapse = "_")
     return(paste0(prefixo, "_")) 
   })
@@ -146,34 +194,146 @@ server <- function(input, output, session) {
     linhas <- linhas[linhas != ""]
     if(length(linhas) == 0) return("Cole os nomes dos arquivos na caixa C acima.")
     
-    prefixo_novo <- prefixo_pada()
+    prefixo_base <- prefixo_pada()
     prefixo_velho <- trimws(input$prefixo_antigo)
+    campo4 <- trimws(input$id_item)
+    
     codigo <- "chcp 65001\n"
     
     for(i in seq_along(linhas)) {
       arquivo <- linhas[i]
       nome_arquivo <- basename(arquivo)
       
+      # Isola a extensão para não quebrar o arquivo ao adicionar sufixos
+      extensao <- ""
+      nome_sem_ext <- nome_arquivo
+      if(grepl("\\.", nome_arquivo)) {
+        partes_nome <- strsplit(nome_arquivo, "\\.")[[1]]
+        extensao <- paste0(".", partes_nome[length(partes_nome)])
+        # Remove a extensão do nome base
+        nome_sem_ext <- sub(paste0(extensao, "$"), "", nome_arquivo)
+      }
+      
+      # Remove o prefixo antigo, se houver
+      if(prefixo_velho != "") {
+        nome_sem_ext <- sub(prefixo_velho, "", nome_sem_ext, fixed = TRUE)
+      }
+      
+      # -------------------------------------------------------------
+      # APLICAÇÃO DAS REGRAS LOGICAS DO CAMPO 4 E MODO DE RENOMEAÇÃO
+      # -------------------------------------------------------------
       if(!is.null(input$modo_renomear) && input$modo_renomear == "sequencial") {
-        extensao <- ""
-        if(grepl("\\.", nome_arquivo)) {
-          partes <- strsplit(nome_arquivo, "\\.")[[1]]
-          extensao <- paste0(".", partes[length(partes)])
+        seq_num <- sprintf("%03d", i)
+        
+        if(campo4 != "") {
+          # Regra: Sequencial com Campo 4
+          nome_final <- paste0(prefixo_base, campo4, "-", seq_num, extensao)
+        } else {
+          # Regra: Apenas Sequencial
+          nome_final <- paste0(prefixo_base, seq_num, extensao)
         }
-        nome_limpo <- sprintf("%03d%s", i, extensao)
         
       } else {
-        nome_limpo <- nome_arquivo
-        if(prefixo_velho != "") {
-          nome_limpo <- sub(prefixo_velho, "", nome_limpo, fixed = TRUE)
+        # Modo: Manter Nome Original
+        if(campo4 != "") {
+          # Regra: Manter nome original e adicionar Campo 4 no final (antes da extensão)
+          nome_final <- paste0(prefixo_base, nome_sem_ext, "-", campo4, extensao)
+        } else {
+          # Regra: Apenas manter nome original
+          nome_final <- paste0(prefixo_base, nome_sem_ext, extensao)
         }
       }
       
-      comando <- sprintf('ren "%s" "%s%s"', nome_arquivo, prefixo_novo, nome_limpo)
+      comando <- sprintf('ren "%s" "%s"', nome_arquivo, nome_final)
       codigo <- paste0(codigo, comando, "\n")
     }
     return(codigo)
   })
+  
+  # ---------- LÓGICA DO RELATÓRIO DE CORRESPONDÊNCIA ----------
+  output$baixar_relatorio_renomeacao <- downloadHandler(
+    filename = function() {
+      paste0("relatorio_correspondencia_", Sys.Date(), ".txt")
+    },
+    content = function(file) {
+      req(input$lista_arquivos)
+      linhas <- unlist(strsplit(input$lista_arquivos, "\n"))
+      linhas <- trimws(gsub("\"", "", linhas))
+      linhas <- linhas[linhas != ""]
+      if(length(linhas) == 0) {
+        writeLines("Nenhum arquivo fornecido na interface.", file)
+        return()
+      }
+      
+      prefixo_base <- prefixo_pada()
+      prefixo_velho <- trimws(input$prefixo_antigo)
+      campo4 <- trimws(input$id_item)
+      
+      # Monta o cabeçalho do documento (Com fuso horário de Brasília forçado)
+      texto <- c(
+        "========================================================",
+        "          RELATÓRIO DE CORRESPONDÊNCIA DE NOMES",
+        "========================================================",
+        paste("Data de geração:", format(Sys.time(), "%d/%m/%Y às %H:%M:%S", tz = "America/Sao_Paulo")),
+        "Este documento registra o mapeamento entre os nomes",
+        "originais dos arquivos e suas nomenclaturas padronizadas.",
+        "========================================================",
+        ""
+      )
+      
+      # Faz o loop cruzando os nomes (De -> Para)
+      for(i in seq_along(linhas)) {
+        arquivo <- linhas[i]
+        
+        # Tesoura brutal: arranca qualquer endereço de pasta (C:\...) e deixa só o nome final
+        nome_arquivo <- gsub(".*[\\\\/]", "", arquivo)
+        
+        # Isola a extensão para não quebrar o arquivo
+        extensao <- ""
+        nome_sem_ext <- nome_arquivo
+        if(grepl("\\.", nome_arquivo)) {
+          partes_nome <- strsplit(nome_arquivo, "\\.")[[1]]
+          extensao <- paste0(".", partes_nome[length(partes_nome)])
+          nome_sem_ext <- sub(paste0(extensao, "$"), "", nome_arquivo)
+        }
+        
+        # Remove o prefixo antigo
+        if(prefixo_velho != "") {
+          nome_sem_ext <- sub(prefixo_velho, "", nome_sem_ext, fixed = TRUE)
+        }
+        
+        # -------------------------------------------------------------
+        # APLICAÇÃO DAS REGRAS LOGICAS DO CAMPO 4 E MODO DE RENOMEAÇÃO
+        # -------------------------------------------------------------
+        if(!is.null(input$modo_renomear) && input$modo_renomear == "sequencial") {
+          seq_num <- sprintf("%03d", i)
+          
+          if(campo4 != "") {
+            nome_final <- paste0(prefixo_base, campo4, "-", seq_num, extensao)
+          } else {
+            nome_final <- paste0(prefixo_base, seq_num, extensao)
+          }
+          
+        } else {
+          # Modo: Manter Nome Original
+          if(campo4 != "") {
+            nome_final <- paste0(prefixo_base, nome_sem_ext, "-", campo4, extensao)
+          } else {
+            nome_final <- paste0(prefixo_base, nome_sem_ext, extensao)
+          }
+        }
+        
+        # Monta a linha bonita, já sem a pasta no "De:"
+        linha_log <- sprintf("[%03d] De: %s   -->   Para: %s", i, nome_arquivo, nome_final)
+        texto <- c(texto, linha_log)
+      }
+      
+      # Salva o arquivo em UTF-8
+      writeLines(enc2utf8(texto), file, useBytes = TRUE)
+    }
+  )
+  
+  # ---------- LÓGICA DA ABA "CRIE SEU DATASET" ----------
   
   # ---------- LÓGICA DA ABA "CRIE SEU DATASET" ----------
   

@@ -16,7 +16,7 @@ aba_sobre <- tabPanel("Sobre o projeto", icon = icon("info-sign", lib="glyphicon
                                    tags$ul(
                                      tags$li(strong("Ferramenta de renomeação: "), "gera scripts de automação (.bat) para a renomeação em lote de arquivos digitais, aplicando normas arquivísticas padronizadas (ISAD-G e NOBRADE)."),
                                      tags$li(strong("Crie seu dataset: "), "permite que você selecione variáveis específicas e baixe bases de dados estruturadas (.xlsx), pré-formatadas, para iniciar o mapeamento ou a análise descritiva de suas fontes."),
-                                     tags$li(strong("Jogos: "), "ambiente lúdico e interativo, desenvolvido com lógicas de programação em JavaScript, voltado à difusão do conhecimento e à preservação da memória.")
+                                     tags$li(strong("Complementos: "), "apresenta funcionalidades elaboradas com lógicas de programação em JavaScript e Python, com vistas à difusão do conhecimento e à preservação da memória.")
                                    ),
                                    
                                    hr(style="border-top: 1px solid #eceae4; margin: 25px 0;"),
