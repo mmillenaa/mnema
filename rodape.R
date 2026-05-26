@@ -1,4 +1,19 @@
 rodape <- div(class = "footer-referencias",
+              
+              # Estilo CSS para alternar os logos automaticamente
+              tags$style("
+                .logo-fapesp-dark { display: none; }
+                .logo-fapesp-light { display: inline-block; }
+                
+                /* Ativação via bslib (padrão Shiny moderno) */
+                html[data-bs-theme='dark'] .logo-fapesp-light { display: none; }
+                html[data-bs-theme='dark'] .logo-fapesp-dark { display: inline-block; }
+                
+                /* Ativação via classe customizada no body (se você usar JS próprio) */
+                body.dark-mode .logo-fapesp-light, body.dark .logo-fapesp-light { display: none; }
+                body.dark-mode .logo-fapesp-dark, body.dark .logo-fapesp-dark { display: inline-block; }
+              "),
+              
               fluidRow(
                 column(8,
                        h5("Créditos e equipe"),
@@ -31,7 +46,12 @@ rodape <- div(class = "footer-referencias",
                 column(4, align = "right",
                        div(style = "margin-top: 20px; display: flex; justify-content: flex-end; align-items: center;",
                            img(src = "https://upload.wikimedia.org/wikipedia/commons/c/cf/Logo_FGV_-_Funda%C3%A7%C3%A3o_Getulio_Vargas.png", height = "20", style = "margin-right: 20px;"),
-                           img(src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Logo_fapesp_em_preto.svg/1280px-Logo_fapesp_em_preto.svg.png", height = "24")
+                           
+                           # Logo FAPESP Claro (Padrão)
+                           img(class = "logo-fapesp-light", src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Logo_fapesp_em_preto.svg/1280px-Logo_fapesp_em_preto.svg.png", height = "24"),
+                           
+                           # Logo FAPESP Escuro (Novo logo adicionado aqui)
+                           img(class = "logo-fapesp-dark", src = "https://fapesp.br/assets/img/logo-simple2.png", height = "24")
                        )
                 )
               ),
@@ -46,7 +66,7 @@ rodape <- div(class = "footer-referencias",
                   tags$script(HTML('
             const data = new Date();
             const meses = ["jan.", "fev.", "mar.", "abr.", "maio", "jun.", "jul.", "ago.", "set.", "out.", "nov.", "dez."];
-            const dataFormatada = data.getDate() + " " + meses[data.getMonth()] + " " + data.getFullYear();
+            const dataFormatada = data.getDate() + " de " + meses[data.getMonth()] + " de " + data.getFullYear();
             document.getElementById("data_atualizacao").innerText = dataFormatada;
         '))
               ),
