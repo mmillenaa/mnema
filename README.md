@@ -6,6 +6,6 @@ Link: https://projeto-memoria.shinyapps.io/mnema/
 ## What does the platform do?
 Programmed in the R (Shiny) environment, the interface focuses on three practical and independent solutions:
 
-### Renaming tool: generates automation scripts (.bat) for batch renaming of digital files, applying standardized archival norms (ISAD-G and NOBRADE).
-### Create your dataset: allows you to select specific variables and download pre-formatted, structured (.xlsx) datasets to begin mapping or descriptive analysis of your sources.
-### Additional features: it presents functionalities developed with programming logic in JavaScript and Python, with a view to disseminating knowledge and preserving memory.
+ - Renaming tool: generates automation scripts (.bat) for batch renaming of digital files, applying standardized archival norms (ISAD-G and NOBRADE).
+ - Create your dataset: allows you to select specific variables and download pre-formatted, structured (.xlsx) datasets to begin mapping or descriptive analysis of your sources.
+ - Additional features: it presents functionalities developed with programming logic in JavaScript and Python, with a view to disseminating knowledge and preserving memory.
