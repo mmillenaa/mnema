@@ -10,7 +10,7 @@ aba_complementos <- tabPanel("Complementos", icon = icon("flash", lib="glyphicon
                                           
                                           # Botão de jogar destacado e centralizado
                                           div(style="text-align: center; margin-top: 15px; margin-bottom: 25px;",
-                                              a(href="https://mmillenaa.github.io/arquivivo/", target="_blank", class="btn-jogar-grande", "Ir para o jogo")
+                                              a(href="https://arquivivo.github.io/", target="_blank", class="btn-jogar-grande", "Ir para o jogo")
                                           ),
                                           
                                           # Informações complementares discretas
@@ -18,7 +18,7 @@ aba_complementos <- tabPanel("Complementos", icon = icon("flash", lib="glyphicon
                                               p(strong("Nota:"), " O jogo foi otimizado para desktop. Caso jogue no celular, adicione o link à tela de início e use o modo paisagem para evitar cortes na tela."),
                                               p("Licença CC BY-NC-SA 4.0 | ", 
                                                 a(href="https://creativecommons.org/licenses/by-nc-sa/4.0/", "Ver licença", target="_blank"), " | ",
-                                                a(href="https://github.com/mmillenaa/arquivivo", "Ver código-fonte", target="_blank"))
+                                                a(href="https://github.com/arquivivo", "Ver código-fonte", target="_blank"))
                                           ),
                                           
                                           hr(style="border-top: 2px solid #eceae4; margin: 40px 0;"),

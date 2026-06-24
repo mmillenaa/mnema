@@ -766,7 +766,17 @@ server <- function(input, output, session) {
       writeLines(enc2utf8(texto), file, useBytes = TRUE)
     }
   )
-}
+  
+  # ---------- LÓGICA DE DOWNLOAD DO FORMULÁRIO DATAVERSE ----------
+  output$downloadDataverse <- downloadHandler(
+    filename = function() {
+      "preparacao_dataverse.docx"
+    },
+    content = function(file) {
+      file.copy("preparacao_dataverse.docx", file)
+    }
+  )
+} # <--- A CHAVE QUE FECHA O SERVIDOR AGORA FICA AQUI, NO FINAL DE TUDO!
 
 # =======================================================
 # 3. COMANDO DE EXECUÇÃO (GERA O APP)
