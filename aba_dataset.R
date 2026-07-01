@@ -221,7 +221,7 @@ aba_dataset <- tabPanel("Seu dataset", icon = icon("list", lib="glyphicon"),
                                    br(),
                                    fluidRow(
                                      column(8, offset = 2, class = "well",
-                                            h3("Cadastrando sua base de dados no Dataverse da FGV"),
+                                            h4("Cadastrando sua base de dados no Dataverse da FGV"),
                                             p("Para cadastrar sua base de dados no Dataverse da FGV, prepare suas respostas no documento word/docx."),
                                             br(),
                                             # Botão de download apontando para o Server
