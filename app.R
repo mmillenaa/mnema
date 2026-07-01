@@ -454,8 +454,8 @@ server <- function(input, output, session) {
     "DT0" = "Cópia digital de acesso direto: extraída manualmente da matriz, sem edição.",
     "DT1" = "Cópia digital de difusão: processada intencionalmente (compressão, recorte) com método documentado.",
     "DTX" = "Cópia digital de acesso com perda: contém tratamento ou compressão cujo histórico de edição é desconhecido.",
-    "MB0" = "Master bruto: original matricial capturado ou nascido digital, sem intervenção humana posterior.",
-    "MT0" = "Matriz primária inalterada: arquivo de mais alta resolução gerado diretamente pelo scanner ou captura, sem retoques.",
+    "MB0" = "Original nato-digital gerado de forma autônoma por sistema, sem operação humana arquivo por arquivo (ex.: tabela de microdados extraída via script em R).",
+    "MT0" = "Arquivo de alta resolução gerado por operação direta no equipamento, sem retoques (ex.: fotografia recém-capturada de um pátio ou planta escaneada).",
     "MT1" = "Matriz de preservação com intervenção documentada: recebeu correções arquivísticas (balanço, gama) com registro completo.",
     "MTX" = "Matriz com manipulação opaca: alta resolução, mas com alterações cujo histórico se perdeu.",
     "NEG" = "Negativo original: imagem primária em suporte translúcido, com inversão de luminosidade."
