@@ -2,8 +2,8 @@ aba_dataset <- tabPanel("Seu dataset", icon = icon("list", lib="glyphicon"),
                         br(),
                         tabsetPanel(
                           
-                          # ================= SUB-ABA 1: CRIE SEU DATASET =================
-                          tabPanel("Crie seu dataset",
+                          # ================= SUB-ABA 1: CRIE =================
+                          tabPanel("Crie",
                                    br(),
                                    
                                    # Texto de apresentação (Padronizado com a aba de ferramentas)
@@ -216,18 +216,107 @@ aba_dataset <- tabPanel("Seu dataset", icon = icon("list", lib="glyphicon"),
                                    )
                           ),
                           
-                          # ================= SUB-ABA 2: PUBLIQUE SEU DATASET =================
-                          tabPanel("Publique seu dataset",
+                          # ================= SUB-ABA 2: ORGANIZE =================
+                          tabPanel("Organize",
                                    br(),
                                    fluidRow(
-                                     column(8, offset = 2, class = "well",
-                                            h4("Cadastrando sua base de dados no Dataverse da FGV"),
-                                            p("Para cadastrar sua base de dados no Dataverse da FGV, prepare suas respostas no documento word/docx."),
-                                            br(),
-                                            # Botão de download apontando para o Server
-                                            downloadButton("downloadDataverse", "Baixar formulário (DOCX) - 1.926 KB", class = "btn-primary")
+                                     # Caixa 1: Fase 1 (Formulário Preliminar)
+                                     column(6, 
+                                            div(class = "well", style = "height: 100%; display: flex; flex-direction: column; justify-content: space-between;",
+                                                div(
+                                                  h4("Fase 1", style = "color: #829a91; margin-top: 0; font-weight: bold;"),
+                                                  h4("Cadastrando sua base de dados no Dataverse da FGV", style = "margin-bottom: 15px;"),
+                                                  p("Para cadastrar sua base de dados no Dataverse da FGV, prepare suas respostas preliminares no documento word/docx.")
+                                                ),
+                                                div(style = "margin-top: 20px;",
+                                                    downloadButton("downloadDataverse1", "Baixar formulário preliminar (DOCX) - 1.926 KB", class = "btn-primary", style = "width: 100%; white-space: normal;")
+                                                )
+                                            )
+                                     ),
+                                     
+                                     # Caixa 2: Fase 2 (Formulário Avançado)
+                                     column(6, 
+                                            div(class = "well", style = "height: 100%; display: flex; flex-direction: column; justify-content: space-between;",
+                                                div(
+                                                  h4("Fase 2", style = "color: #829a91; margin-top: 0; font-weight: bold;"),
+                                                  h4("Curadoria avançada de metadados no Dataverse", style = "margin-bottom: 15px;"),
+                                                  p("Após a aprovação do cadastro, prepare os metadados técnicos e arquivísticos finais neste documento complementar.")
+                                                ),
+                                                div(style = "margin-top: 20px;",
+                                                    downloadButton("downloadDataverse2", "Baixar formulário avançado (DOCX) - 2.788 KB", class = "btn-primary", style = "width: 100%; white-space: normal;")
+                                                )
+                                            )
                                      )
-                                   )
-                          )
-                        )
-)
+                                   ),
+                                   
+                                   # Ajuste para manter as caixas com a mesma altura independentemente do texto
+                                   tags$head(tags$style(HTML("
+                                     .row-eq-height { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; flex-wrap: wrap; }
+                                     .row-eq-height > [class*='col-'] { display: flex; flex-direction: column; }
+                                   "))),
+                                   br()
+                          ),
+                          
+                          # ================= SUB-ABA 3: PUBLIQUE =================
+                          tabPanel("Publique",
+                                   br(),
+                                   fluidRow(
+                                     column(10, offset = 1, class = "well", style = "background-color: #ffffff;",
+                                            h4("Checklist de publicação do repositório no Dataverse", style = "color: #2c3e50; font-family: 'Merriweather', serif; margin-bottom: 15px;"),
+                                            
+                                            div(style = "display: flex; align-items: stretch; min-height:400px;",
+                                                div(style = "width: 70px; flex-shrink: 0; padding-top: 5px; padding-bottom: 15px; display: flex; flex-direction: column;",
+                                                    uiOutput("barra_vertical")
+                                                ),
+                                                div(style = "flex-grow: 1; padding-left: 20px;",
+                                                    tags$style(HTML("
+                                                      .custom-checklist .checkbox { margin-bottom: 22px; font-size: 1.05em; color: #505c58; }
+                                                      .custom-checklist input[type='checkbox'] { margin-top: 4px; transform: scale(1.2); }
+                                                    ")),
+                                                    div(class = "custom-checklist",
+                                                        checkboxGroupInput("checklist_pub", label = NULL, width = "100%",
+                                                                           choices = c(
+                                                                             "Estrutura da base definida — Já tenho definida a estrutura do dataset (ver aba Seu dataset > Crie." = "c1",
+                                                                             "Base concluída e organizada — Todos os arquivos estão organizados e documentados (metadados básicos, nomes padronizados)." = "c2",
+                                                                             "Formulário de requisição (Fase 1) preenchido — O formulário inicial de cadastro no Dataverse (aba Organize, Fase 1) foi completado." = "c3",
+                                                                             "Requisição aceita e formulário avançado (Fase 2) preparado — A requisição foi aceita e a lista do formulário avançado foi preenchida e verificada." = "c4",
+                                                                             "README elaborado — Existe um README com escopo, instruções de navegação, notas metodológicas, política de citação e contato." = "c5",
+                                                                             "Revisão final da estrutura — Revisei nomes de arquivos, pastas, textos, formatação e tudo está aparentemente pronto." = "c6",
+                                                                             "Revisão com orientador/a — Conversei com meu/minha orientador/a; o repositório está em condições de ser submetido para revisão (Submit for review)." = "c7",
+                                                                             "Submetido para revisão — O repositório foi submetido para revisão no Dataverse por mim ou pelo/a orientador/a. 🎉" = "c8"
+                                                                           )
+                                                        )
+                                                    )
+                                                )
+                                            ),
+                                            uiOutput("mensagem_vitoria")
+                                     )
+                                   ),
+                                   tags$head(tags$script(src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js")),
+                                   tags$script(HTML("
+                                     Shiny.addCustomMessageHandler('efeito_conquista', function(message) {
+                                        var pct = document.getElementById('texto-porcentagem');
+                                        if(pct) {
+                                            pct.classList.remove('pulso-ativo');
+                                            void pct.offsetWidth;
+                                            pct.classList.add('pulso-ativo');
+                                        }
+                                        if (navigator.vibrate) { navigator.vibrate(50); }
+                                     });
+                                     Shiny.addCustomMessageHandler('disparar_confetes', function(message) {
+                                       var duration = 5 * 1000;
+                                       var animationEnd = Date.now() + duration;
+                                       var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+                                       function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+                                       var interval = setInterval(function() {
+                                         var timeLeft = animationEnd - Date.now();
+                                         if (timeLeft <= 0) { return clearInterval(interval); }
+                                         var particleCount = 50 * (timeLeft / duration);
+                                         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                                         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                                       }, 250);
+                                     });
+                                   "))
+                          ) # FIM da tabPanel "Publique"
+                        ) # FIM do tabsetPanel
+) # FIM do aba_dataset principal

@@ -649,7 +649,6 @@ server <- function(input, output, session) {
     }
   )
   
-  # ---------- LÓGICA DA ABA "CRIE SEU DATASET" ----------
   
   # ---------- LÓGICA DA ABA "CRIE SEU DATASET" ----------
   
@@ -767,15 +766,77 @@ server <- function(input, output, session) {
     }
   )
   
-  # ---------- LÓGICA DE DOWNLOAD DO FORMULÁRIO DATAVERSE ----------
-  output$downloadDataverse <- downloadHandler(
-    filename = function() {
-      "preparacao_dataverse.docx"
-    },
-    content = function(file) {
-      file.copy("preparacao_dataverse.docx", file)
+  # ---------- LÓGICA DE DOWNLOAD DOS FORMULÁRIOS DATAVERSE (Aba Organize) ----------
+  
+  output$downloadDataverse1 <- downloadHandler(
+    filename = function() { "preparacao_dataverse_fase1.docx" },
+    content = function(file) { 
+      # Usando barras normais (/) para o R não se perder no Windows
+      file.copy("C:/Users/mille/OneDrive/Área de Trabalho/Aplicativo Mnema/preparacao_dataverse.docx", file) 
     }
   )
+  
+  output$downloadDataverse2 <- downloadHandler(
+    filename = function() { "publicacao_dataverse_fase2.docx" },
+    content = function(file) { 
+      # Usando barras normais (/) para o R não se perder no Windows
+      file.copy("C:/Users/mille/OneDrive/Área de Trabalho/Aplicativo Mnema/publicacao-dataverse.docx", file) 
+    }
+  )
+  
+  # ---------- LÓGICA DA BARRA DE PROGRESSO VERTICAL E CONFETES (Aba Publique) ----------
+  
+  # Observador isolado para disparar o efeito intermediário a cada clique
+  progresso_anterior <- reactiveVal(0)
+  
+  observeEvent(input$checklist_pub, {
+    atual <- length(input$checklist_pub)
+    
+    # Se o número de caixas marcadas aumentou, dispara o pulso e a vibração
+    if (atual > progresso_anterior() && atual < 8) {
+      session$sendCustomMessage("efeito_conquista", list(pct = atual))
+    }
+    progresso_anterior(atual) # Atualiza a memória
+  }, ignoreNULL = FALSE)
+  
+  # Calcula a porcentagem e desenha a barra vertical dinamicamente (de cima para baixo)
+  output$barra_vertical <- renderUI({
+    marcados <- length(input$checklist_pub)
+    total <- 8
+    porcentagem <- round((marcados / total) * 100)
+    
+    cor_destaque <- ifelse(porcentagem == 100, "#27ae60", "#10b3cf") 
+    
+    HTML(sprintf('
+      <div style="display: flex; flex-direction: column; align-items: center; height: 100%%;">
+        <div style="font-weight: bold; font-size: 1.3em; color: %s; margin-bottom: 12px; transition: color 0.5s;">%s%%</div>
+        <div style="width: 8px; background-color: #eceae4; border-radius: 4px; flex-grow: 1; position: relative; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 12px; min-height: 250px;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%%; height: %s%%; background-color: %s; transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s;"></div>
+        </div>
+      </div>
+    ', cor_destaque, porcentagem, porcentagem, cor_destaque))
+  })
+  
+  # Observador final que checa se TODAS as caixas foram marcadas (100%)
+  observe({
+    req(input$checklist_pub)
+    if(length(input$checklist_pub) == 8) {
+      
+      # Envia a mensagem pro JavaScript disparar os confetes na tela
+      session$sendCustomMessage("disparar_confetes", list(disparar = TRUE))
+      
+      # Exibe a mensagem de parabenização no final (Agora usando a classe msg-vitoria com suporte a Dark Mode)
+      output$mensagem_vitoria <- renderUI({
+        div(class = "msg-vitoria", style = "padding: 10px; border-radius: 4px; margin-top: 5px; text-align: center; animation: fadeIn 1s;",
+            h3("Parabéns! 🎉", style = "font-family: 'Merriweather', serif; margin-top: 0;"),
+            p("Desejamos visibilidade total à sua base e que ela contribua muito para a ciência, tecnologia e inovação!", style = "font-size: 1.15em; font-weight: bold; margin-bottom: 0;")
+        )
+      })
+    } else {
+      # Apaga a mensagem se o usuário desmarcar alguma caixa
+      output$mensagem_vitoria <- renderUI({ NULL })
+    }
+  })
 } # <--- A CHAVE QUE FECHA O SERVIDOR AGORA FICA AQUI, NO FINAL DE TUDO!
 
 # =======================================================
