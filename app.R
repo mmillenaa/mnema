@@ -766,21 +766,23 @@ server <- function(input, output, session) {
     }
   )
   
-  # ---------- LÓGICA DE DOWNLOAD DOS FORMULÁRIOS DATAVERSE (Aba Organize) ----------
+# ---------- LÓGICA DE DOWNLOAD DOS FORMULÁRIOS DATAVERSE (Aba Organize) ----------
   
   output$downloadDataverse1 <- downloadHandler(
     filename = function() { "preparacao_dataverse_fase1.docx" },
     content = function(file) { 
-      # Usando barras normais (/) para o R não se perder no Windows
-      file.copy("C:/Users/mille/OneDrive/Área de Trabalho/Aplicativo Mnema/preparacao_dataverse.docx", file) 
+      # Usando o link RAW do GitHub e baixando em modo binário (wb)
+      url1 <- "https://raw.githubusercontent.com/mmillenaa/mnema/main/preparacao_dataverse.docx"
+      download.file(url1, destfile = file, mode = "wb")
     }
   )
   
   output$downloadDataverse2 <- downloadHandler(
     filename = function() { "publicacao_dataverse_fase2.docx" },
     content = function(file) { 
-      # Usando barras normais (/) para o R não se perder no Windows
-      file.copy("C:/Users/mille/OneDrive/Área de Trabalho/Aplicativo Mnema/publicacao-dataverse.docx", file) 
+      # Usando o link RAW do GitHub e baixando em modo binário (wb)
+      url2 <- "https://raw.githubusercontent.com/mmillenaa/mnema/main/publicacao-dataverse.docx"
+      download.file(url2, destfile = file, mode = "wb")
     }
   )
   
