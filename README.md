@@ -9,3 +9,5 @@ Programmed in the R (Shiny) environment, the interface focuses on three practica
  - Renaming tool: generates automation scripts (.bat) for batch renaming of digital files, applying standardized archival norms (ISAD-G and NOBRADE).
  - Create your dataset: allows you to select specific variables and download pre-formatted, structured (.xlsx) datasets to begin mapping or descriptive analysis of your sources.
  - Additional features: it presents functionalities developed with programming logic in JavaScript and Python, with a view to disseminating knowledge and preserving memory.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22018046.svg)](https://doi.org/10.5281/zenodo.22018046)
