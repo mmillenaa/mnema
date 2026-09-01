@@ -11,3 +11,5 @@ Programmed in the R (Shiny) environment, the interface focuses on three practica
  - Additional features: it presents functionalities developed with programming logic in JavaScript and Python, with a view to disseminating knowledge and preserving memory.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22018046.svg)](https://doi.org/10.5281/zenodo.22018046)
+
+[![INPI](https://img.shields.io/badge/INPI-BR%2051%202026%20006933--5-005baa?style=flat-square)](https://busca.inpi.gov.br/)
