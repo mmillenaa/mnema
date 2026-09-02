@@ -1,5 +1,5 @@
 # Mnema 1.0
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22018046.svg)](https://doi.org/10.5281/zenodo.22018046) [![INPI](https://img.shields.io/badge/INPI-BR%2051%202026%20006933--5-005baa?style=flat-square)](https://busca.inpi.gov.br/) ![RStudio](https://img.shields.io/badge/RStudio-75AADB?style=flat&logo=rstudio&logoColor=white)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22018046-blue)](https://doi.org/10.5281/zenodo.22018046) [![INPI](https://img.shields.io/badge/INPI-BR%2051%202026%20006933--5-005baa?style=flat-square)](https://busca.inpi.gov.br/) ![RStudio](https://img.shields.io/badge/RStudio-75AADB?style=flat&logo=rstudio&logoColor=white)
 
 Mnema 1.0 is an application developed at the Research Group on Law and State Violence of FGV Law School São Paulo to rename digital files from the group’s historical collections. It automates archival standardization based on technical recommendations, offering a practical tool, step‑by‑step tutorial, and explanatory fields.
 Link: https://projeto-memoria.shinyapps.io/mnema/
