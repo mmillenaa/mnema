@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Mnema 1.0: Ferramenta educativa para organização e disponibilização de acervos históricos em Direito e violência de Estado"
+abstract: >-
+  Mnema 1.0 is an application developed at the Research Group on Law and State 
+  Violence of FGV Law School São Paulo to rename digital files from the group’s 
+  historical collections. Programmed in R (Shiny), it automates archival standardization 
+  based on ISAD(G) and NOBRADE norms by generating batch renaming scripts (.bat), 
+  and allows users to download structured datasets (.xlsx) for descriptive analysis.
+authors:
+  - family-names: "Franco"
+    given-names: "Millena Miranda"
+    affiliation: "Escola de Direito de São Paulo, Fundação Getulio Vargas (FGV)"
+url: "https://projeto-memoria.shinyapps.io/mnema/"
+# repository-code: "https://github.com/SEU_USUARIO/SEU_REPOSITORIO"
+license: MIT
+version: 1.0.0
+date-released: "2026-10-09"
+keywords:
+  - digital humanities
+  - archival standardization
+  - R
+  - Shiny
+  - state violence
+  - batch renaming
