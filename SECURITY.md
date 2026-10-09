@@ -1,18 +1,17 @@
 # Security Policy
 
 ## Context
-The applications in this repository are static pages: there is no backend server, no login mechanism, and no user data collection. The realistic security risks are confined to the browser environment — for example, script injection through crafted data or a compromised third-party library.
+Mnema 1.0 is an R (Shiny) web application hosted on the shinyapps.io platform. The application processes user inputs to generate structured datasets (.xlsx) and batch execution scripts (.bat). It does not permanently store uploaded user data or metadata on the server.
 
-## Supported Versions
-Only the latest release on the `main` branch receives security updates and bug fixes.
+## Safe Execution of Generated Scripts
+A core feature of this application is generating `.bat` (batch) files for renaming local digital archives. 
+* **User Responsibility:** Users are strongly advised to open and inspect the generated `.bat` scripts in a standard text editor (such as Notepad) to verify the renaming paths before executing them on their local machines.
+* **No Malicious Payloads:** The application generates plain text commands strictly based on the user's interface inputs and archival standards.
 
 ## Reporting a Vulnerability
-Please do not open a public issue for security vulnerabilities. Instead, report them privately using one of the following methods:
+If you discover a security vulnerability—such as an injection flaw in the script generation or a dependency issue within the R/JavaScript/Python environment—please report it privately.
 
 1. **GitHub Private Reporting:** Go to the Security tab → Report a vulnerability.
 2. **Email:** Send a message directly to millena@usp.br.
 
-Please include the affected page, the steps to reproduce the issue, and the expected impact. You will receive an acknowledgment within ten working days.
-
-## Third-Party Libraries
-We strive to keep third-party dependencies up to date and load them securely. If you identify a vulnerability originating from an external library used in this project, please report it following the steps above so we can patch or replace the dependency.
+Please provide a detailed description of the issue and steps to reproduce it. You will receive an acknowledgment within ten working days. Do not open a public issue for security concerns.
